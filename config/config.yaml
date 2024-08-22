@@ -1,0 +1,11 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_type: kaggle
+  kaggle_dataset_owner: mohamedhanyyy
+  kaggle_dataset_name: chest-ctscan-images
+  local_data_file: artifacts/data_ingestion/
+  unzip_dir: artifacts/data_ingestion
+
+ 

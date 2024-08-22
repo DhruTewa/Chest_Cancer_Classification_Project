@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/dhruv/PROJECTS/Kaggle_Projects/Chest_Cancer_Classification_Project/research/mlruns/0/d8590d2e17cc424889e6da924dfa840b/artifacts
+end_time: 1724198894157
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d8590d2e17cc424889e6da924dfa840b
+run_name: learned-mink-87
+run_uuid: d8590d2e17cc424889e6da924dfa840b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724198892819
+status: 3
+tags: []
+user_id: dhruv
