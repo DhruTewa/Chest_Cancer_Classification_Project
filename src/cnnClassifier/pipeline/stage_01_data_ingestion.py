@@ -6,14 +6,15 @@ STAGE_NAME = "Data Ingestion Stage"
 
 class DataIngestionTrainingPipeline:
     def __init__(self):
-        pass
+                pass
     
-    def main(self):        
-        config_manager = ConfigurationManager()
-        data_ingestion_config = config_manager.get_data_ingestion_config()
+    def main(self): 
+        config = ConfigurationManager()
+        data_ingestion_config = config.get_data_ingestion_config()
         data_ingestion = DataIngestion(config=data_ingestion_config)
         data_ingestion.download_file()
         data_ingestion.extract_zip_file()
+
         
 if __name__ == '__main__':
     try:

@@ -1,6 +1,7 @@
 import os
 import zipfile
 import kaggle
+import shutil
 from kaggle.api.kaggle_api_extended import KaggleApi
 from cnnClassifier import logger
 from cnnClassifier.utils.common import get_size
@@ -35,9 +36,42 @@ class DataIngestion:
         Function returns None
         """
         unzip_path = self.config.unzip_dir
-        zip_file_path = os.path.join(self.config.local_data_file, 'chest-ctscan-images.zip')
+        os.makedirs(unzip_path, exist_ok=True)
+        zip_file_path = os.path.join(self.config.local_data_file,'chest-ctscan-images.zip')
         with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
             zip_ref.extractall(unzip_path)  
 
+
+        # Delete unnecessary folders (test and valid)
+        folders_to_delete = ['test', 'valid']
+        for folder in folders_to_delete:
+            extract_path = os.path.join(unzip_path, 'Data')
+            folder_path = os.path.join(extract_path, folder)
+            if os.path.exists(folder_path):
+                shutil.rmtree(folder_path)
+            else:
+                print(f"Folder {folder} does not exist.")
+                
+        files_to_move_and_rename = [
+            {'name': 'adenocarcinoma_left.lower.lobe_T2_N0_M0_Ib', 'new_name': 'adenocarcinoma'},
+            {'name': 'normal', 'new_name': 'normal'}
+        ]  # Update with your file names and new names
+
+        # Loop through the files to move and rename
+        for file in files_to_move_and_rename:
+            # Get the path to the current file
+            file_path = os.path.join(unzip_path, 'Data','train', file['name'])
+            
+            # Check if the file exists
+            if os.path.exists(file_path):
+                # Move the file to the zip file path and rename it
+                new_file_path = os.path.join(os.path.dirname(self.config.local_data_file), 'Data')
+                shutil.move(file_path, new_file_path)
+                
+            else:
+                print(f"File {file['name']} does not exist.")
+        shutil.rmtree(os.path.join(unzip_path, 'Data','train')) # Remove the train folder
+
         
         logger.info(f"Extracted dataset to {unzip_path}")
+
