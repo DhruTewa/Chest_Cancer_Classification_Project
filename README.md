@@ -47,3 +47,18 @@ pip install -r requirements.txt
 python app.py
 ```
 
+### MLflow dagshub connection url
+``` bash
+MLFLOW_TRACKING_URI=https://dagshub.com/DhruTewa/Chest_Cancer_Classification_Project.mlflow \
+MLFLOW_TRACKING_USERNAME=dhrutewa \
+MLFLOW_TRACKING_PASSWORD=6dd20d48b986987406f9d2c820406d539cde2a85a \
+python script.py
+dd20d48b986987406f9d2c820406d539cde2a85a
+```
+
+### RUN from bash terminal
+export MLFLOW_TRACKING_URI=https://dagshub.com/DhruTewa/Chest_Cancer_Classification_Project.mlflow
+
+export MLFLOW_TRACKING_USERNAME=dhrutewa 
+
+export MLFLOW_TRACKING_PASSWORD=dd20d48b986987406f9d2c820406d539cde2a85a
